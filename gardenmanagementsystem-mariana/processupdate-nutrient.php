@@ -1,4 +1,4 @@
-<form  method="post"> 
+<form action="updatenutrient-query.php" method="post">
 <style>
 body{
   background-image: url('img.jpg');
@@ -120,8 +120,7 @@ input[type=submit]:hover {
 </style>
 
 </html>
-
-<form action="updatenutrient-query.php" method="post"> 
+ 
 <center>
 Update the nutrients hazards using the nutrient name
 </br>
