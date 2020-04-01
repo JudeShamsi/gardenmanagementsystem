@@ -65,7 +65,7 @@ Supplier_ID INT PRIMARY KEY AUTO_INCREMENT,
 s_email CHAR(100),
 s_fnme CHAR(50),
 s_lname CHAR(50),
-s_phone CHAR(20)
+s_phone CHAR(20),
 );
 
 CREATE TABLE Inventory (
@@ -75,6 +75,7 @@ InventoryName CHAR(100),
 Stock_Date DATE,
 ExpirationDate DATE,
 E_SIN INT NOT NULL,
+Supplier_ID INT,
 CONSTRAINT esin FOREIGN KEY(E_SIN) REFERENCES Employee(E_SIN) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

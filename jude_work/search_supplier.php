@@ -12,10 +12,51 @@ if ($conn->connect_error) {
 <html>
 <head>
         <title>Delete Records</title>
+        <link rel="stylesheet" href="./style_add_supplier.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body style="padding-top: 100px;">
+<body>
+    <style>
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background-color: wheat;
+            }
+            table {
+                width: 100%;
+                color: #228B22;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 17px;
+                text-align: left;
+                padding: 10px;
+                /* border: 2px solid black; */
+                /* border-collapse: collapse; */
+                
+            }
+            th {
+                background-color: #228B22;
+                color: white;
+                padding: 10px;
+                border: 2px solid black;
+                font-family: 'Montserrat', sans-serif;
+            }
+            tr: nth-child(even) {
+                background-color: #228B22; 
+            }
+        </style>
+<div id="Homepage" class="tabcontent">
+				<h1>Homepage</h1>
+		</div>
+		<div id="Inventory" class="tabcontent">
+			<h1>Inventory</h1>
+		</div>
+		<div id = "Schedule" class="tabcontent">
+			<h1>Schedule</h1>
+		</div>	
+		<button class="headertab" onclick="openTab('Homepage', this, 'red')" id="defaultOpen">Homepage</button>
+		<button class="headertab" onclick="openTab('Inventory', this, 'yellow')">Inventory</button>
+		<button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
 <?php
-    //$fetchQuery = mysqli_query("SELECT * FROM Supplier") or die("could not fetch".mysql_error());
     $sql = mysqli_query($conn, "SELECT * FROM Supplier");
     
 ?>
@@ -47,7 +88,7 @@ if ($conn->connect_error) {
             <?php }
     }
     ?>
-    <table class="table table-condensed table-boardered">
+    <table class="table">
         <tr>
             <th>Supplier Id</th>
             <th>First Name</th>
@@ -73,8 +114,8 @@ if ($conn->connect_error) {
                  </td>
             </form>
         </tr>
-        <?php  }
-        $sr++;
+        <?php  $sr++;}
+        
         ?>
     </table>
 </div>
