@@ -9,7 +9,7 @@
         }
 
         $employeeSet = $conn->query("SELECT E_fname, E_SIN FROM Employee WHERE E_Type = 'Operations'");
-        $supplierSet = $conn->query("SELECT s_fname FROM Supplier");
+        $supplierSet = $conn->query("SELECT s_fname, Supplier_ID FROM Supplier");
 
         ?>
     	<meta charset="UTF-8">
@@ -83,8 +83,9 @@
                 <select name="suppliers">
                         <?php
                             while($rows = $supplierSet->fetch_assoc()){
-                                $s_fname = $rows['s_fname'];
-                                echo "<option value='$s_fname'>$s_fname</option>";
+                                $Supplier_ID = $rows['Supplier_ID'];
+                                $S_fname = $rows['s_fname'];
+                                echo "<option value='$Supplier_ID'>$S_fname</option>";
                             }
                         ?>
                     </select>

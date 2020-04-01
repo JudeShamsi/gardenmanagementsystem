@@ -14,19 +14,23 @@ $Stock_Date = date("Y-m-d", strtotime($_POST['s-date']));
 $ExpirationDate = date("Y-m-d", strtotime($_POST['e-date']));
 
 
-
-// $sql = "SELECT E_SIN FROM Employee WHERE E_fname = $employee_name";
-// $result = $conn->query($sql);
-// echo "$result";
-
 $sql_insert_inventory =  "INSERT INTO Inventory(Inventory_Category, InventoryName, `Stock_Date`, `ExpirationDate`, `E_SIN`) 
 VALUES('$Inventory_Category', '$InventoryName', '$Stock_Date', '$ExpirationDate', '$employee_name')";
 
 
+
 if ($conn->query($sql_insert_inventory) === TRUE) {
-    echo "New record created successfully";
+    $id = $conn->insert_id;
+    $sql_insert_provides = "INSERT INTO Provides(Inventory_ID, Supplier_ID) VALUES('$id', '$suppliers')";
+    if($conn->query($sql_insert_provides) === TRUE){
+        echo "New record created successfully";
+    } else {
+        echo "error with provides";
+    }
+   
 } else {
     echo "Error: " . $sql_insert_inventory. "<br>" . $conn->error;
+    echo "Error: " . $sql_insert_provides. "<br>" . $conn->error;
 }
 
 $conn->close();
