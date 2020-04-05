@@ -18,3 +18,10 @@ SELECT COUNT  Day
 FROM Schedule 
 WHERE E_SIN=$E_SIN"
 --> $E_SIN is the user input
+
+--> get the  employee tasks 
+SELECT Task_Type
+FROM Has 
+WHERE Year = $row["Year"] AND Month = $row["Month"] AND Day = $row["Day"];
+
+--> $row is the a row of the results from the earlier find Employee Schedule from Employee id query
