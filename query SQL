@@ -1,0 +1,20 @@
+// search
+
+--> find Employee Schedule from Employee id
+SELECT Year,Month,Day,Start_Time,End_Time 
+FROM Schedule
+WHERE E_SIN=$E_SIN
+--> $E_SIN is the user input
+
+--> find when a certain task happens
+SELECT Year,Month,Day
+FROM Has 
+WHERE TaskNum=$TaskNum
+--> $TaskNum is the user input
+
+
+--> get the tasks an empolyee has
+SELECT COUNT  Day
+FROM Schedule 
+WHERE E_SIN=$E_SIN"
+--> $E_SIN is the user input
