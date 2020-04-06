@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    	<link rel="stylesheet" href="./style_add_supplier.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    	<title>Add a Supplier</title>
+    </head>	
+    <body>
+		<div id="Homepage" class="tabcontent">
+				<h1>Homepage</h1>
+		</div>
+		<div id="Inventory" class="tabcontent">
+			<h1>Inventory</h1>
+		</div>
+		<div id = "Schedule" class="tabcontent">
+			<h1>Schedule</h1>
+        </div>	
+        <form action="homepage.html" method="post">
+            <div class="pages-btn">
+            <button class="headertab" onclick="openTab('Homepage', this, 'red')" id="defaultOpen">Homepage</button>
+            </div>
+        </form>
+        
+        <form action="add_inventory.html" method="post">
+            <div class="pages-btn">
+                <button class="headertab" onclick="openTab('Inventory', this, 'yellow')">Inventory</button>
+            </div>
+        </form>
+
+        <form action="add_schedule.php" method="post">
+            <div class="pages-btn">
+            <button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
+            </div>
+        </form>
+        
+        
+        <h1 style="color: white"></h1>
+        <br>
+
+         <h3>Search Employee Schedule</h3> 
+        <div class="container">
+        <form action="search_schedule.php" method="post">
+            <div class="row">
+                <div class="col-25">
+                    <label>Enter Employee SIN</label>
+                </div>
+                <div class="col-75">
+                    <input id="esin" name="e-sin" type="text" placeholder="Type
+                    Here">
+                </div>
+                <div class="row">
+                    <input type="submit" value="Find Schedule">
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
