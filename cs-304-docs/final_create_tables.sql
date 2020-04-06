@@ -1,18 +1,18 @@
-DROP TABLE GrowthRate;
-DROP TABLE PlantHas;
-DROP TABLE Lighting;
-DROP TABLE Need;
-DROP TABLE Requires;
-DROP TABLE Nutrients;
-DROP TABLE EssentialMinerals;
-DROP TABLE Water; 
-DROP TABLE Inventory; 
-DROP TABLE Supplier;
-DROP TABLE Provides;
-DROP TABLE ​Employee​;
-DROP TABLE Task;
 DROP TABLE Has;
+DROP TABLE Need;
+DROP TABLE Provides;
+DROP TABLE Requires;
+DROP TABLE Water; 
+DROP TABLE GrowthRate;
+DROP TABLE EssentialMinerals;
+DROP TABLE Lighting;
+DROP TABLE Nutrients;
+DROP TABLE PlantHas;
+DROP TABLE Inventory; 
 DROP TABLE Schedule;
+DROP TABLE Supplier;
+DROP TABLE Task;
+DROP TABLE ​Employee​;
 DROP VIEW IF EXISTS plants_more_than_two;
 
 
