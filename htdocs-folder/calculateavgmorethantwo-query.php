@@ -30,13 +30,11 @@ echo "</table>";
 }
 include 'connecthg.php';
 
-$id = $_POST['id'];
 $conn = OpenCon();
 
-$sql = "select DISTINCT Nutrients.N_Name, AVG(GrowthRate.LengthGrowth)
-from PlantHas, Requires, Nutrients, GrowthRate
-where Nutrients.N_ID = '$id' AND  GrowthRate.PG_ID = PlantHas.P_ID AND  Nutrients.N_ID = Requires.NR_ID AND PlantHas.P_ID = Requires.PR_ID
-group by Nutrients.N_ID, Nutrients.N_Name";
+$sql = "SELECT plants_more_than_two.NN_Name as NutrientName, AVG(GrowthRate.LengthGrowth) as AverageGrowth
+FROM plants_more_than_two, GrowthRate, PlantHas, Requires, Nutrients
+WHERE plants_more_than_two.NN_ID = Requires.NR_ID AND Requires.PR_ID = PlantHas.P_ID AND GrowthRate.PG_ID = PlantHas.P_ID
+GROUP BY plants_more_than_two.NN_Name";
 myTable($conn,$sql);
-
 ?>

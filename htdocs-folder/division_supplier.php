@@ -5,13 +5,12 @@ $conn = OpenCon();
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Delete Records</title>
+        <title>Division Record</title>
         <link rel="stylesheet" href="./style_add_supplier.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -57,61 +56,38 @@ if ($conn->connect_error) {
 		<button class="headertab" onclick="openTab('Suppliers', this, 'yellow')">Suppliers</button>
 		<button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
 <?php
-    $sql = mysqli_query($conn, "SELECT * FROM Inventory");
+    $Inventory_Category = $_POST['i-category'];
+    $sql = mysqli_query($conn, "SELECT s.s_fname, s.s_lname, s.s_email, s.s_phone 
+    FROM Supplier s WHERE NOT EXISTS (
+        (SELECT I1.Inventory_ID
+            FROM Inventory I1
+            WHERE I1.Inventory_Category = '$Inventory_Category') 
+        EXCEPT 
+        (SELECT P.Inventory_ID 
+FROM Provides P, Inventory I2
+WHERE P.Supplier_ID=s.Supplier_ID AND P.Inventory_ID=I2.Inventory_ID 
+AND I2.Inventory_Category = '$Inventory_Category'))");
+
     
 ?>
 <div class="container">
-    <?php
-    if(isset($_POST['submitDeleteBtn'])) {
-        $key = $_POST['keyToDelete'];
-
-        // check if the record exists in the table before deleting 
-
-        $check = mysqli_query($conn, "SELECT * FROM Inventory WHERE Inventory_ID = '$key' ");
-       // $checkresult = $conn->query($check);
-        if(mysqli_num_rows($check) > 0){
-            
-        $queryDelete = mysqli_query($conn, "DELETE FROM Inventory WHERE Inventory_ID = '$key' ");
-        ?>
-        
-        <div class="alert alert-warning">
-            <p>Record deleted</p>
-        </div>
-
-    <?php    } else {
-            ?>
-
-            <div class="alert alert-warning">
-                <p>Record does not exist</p>
-            </div>
-
-            <?php }
-    }
-    ?>
     <table class="table">
         <tr>
-            <th>Inventory Id</th>
-            <th>Inventory Category</th>
-            <th>Inventory Name</th>
-            <th>Stock Date</th>
-            <th>Expiration Date</th>
+            <th>Supplier First Name</th>
+            <th>Supplier Last Name</th>
+            <th>Supplier Phone</th>
+            <th>Supplier Email</th>
         </tr>
         <?php
         $sr = 1;
         while($row = mysqli_fetch_array($sql)) {?>
         <tr>
             <form action="" method="post" role = "form">
-                <td><?php echo $sr;?></td>
-                <td><?php echo $row['Inventory_Category'];?></td>
-                <td><?php echo $row['InventoryName'];?></td>
-                <td><?php echo $row['Stock_Date'];?></td>
-                <td><?php echo $row['ExpirationDate'];?></td>
-                <td>
-                    <input type="checkbox" name="keyToDelete" value="<?php echo $row['Inventory_ID'];?>" required>
-                 </td>
-                 <td>
-                    <input type="submit" name="submitDeleteBtn" class="btn btn-info">
-                 </td>
+                <td><?php echo $row['s_fname'];?></td>
+                <td><?php echo $row['s_lname'];?></td>
+                <td><?php echo $row['s_phone'];?></td>
+                <td><?php echo $row['s_email'];?></td>
+        
             </form>
         </tr>
         <?php  $sr++;}
@@ -119,14 +95,6 @@ if ($conn->connect_error) {
         ?>
     </table>
 </div>
-
-<div>
-    <form action="add_supplier.html" method="post">
-        <div class="rows" id="pages-btn">
-            <input type="submit" value="Add Supplier">
-        </div>
-    </form>
-</div> 
 
 </body>
 </html>

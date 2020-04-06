@@ -29,14 +29,23 @@
 		</div>
 		<div id = "Schedule" class="tabcontent">
 			<h1>Schedule</h1>
-		</div>	
-        <button class="headertab" onclick="openTab('Homepage', this, 'green')">HomePage</button>
-        <form action="search_inventory.php" method="post">
+        </div>
+        
+        <form action="homepage.html" method="post">
+                <div class="pages-btn">
+                <button class="headertab" onclick="openTab('Homepage', this, 'green')">HomePage</button>
+                </div>
+        </form>
+        <form action="add_supplier.html" method="post">
                 <div class="pages-btn">
                 <button class="headertab" onclick="openTab('Suppliers', this, 'yellow')">Suppliers</button>
                 </div>
-            </form>
-        <button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
+        </form>
+        <form action="add_schedule.php" method="post">
+                <div class="pages-btn">
+                <button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
+                </div>
+        </form>
         
         <h1 style="color: white"></h1>
         <br>
@@ -115,10 +124,7 @@
             <div class="row">
                 <input type="submit" value="Add Inventory">
             </div>
-        </form>
-        </div>
-        
-        <div >
+            <div >
             <h3>View Inventory Table</h3>
             <form action="search_inventory.php" method="post">
                 <div class="pages-btn">
@@ -126,15 +132,10 @@
                 </div>
             </form>
         </div> 
-
-        <div >
-            <h3>View Suppliers Table</h3>
-            <form action="search_supplier.php" method="post">
-                <div class="pages-btn">
-                    <input type="submit" value="Search Suppliers">
-                </div>
-            </form>
-        </div>    
+        </form>
+        </div>
+        
+        
 
     </body>
 </html>

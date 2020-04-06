@@ -146,3 +146,9 @@ echo "</select>";
 <br>
 <input type="submit" value="Search">
 </form>
+
+<form action="calculateavgmorethantwo-query.php" method="post"> 
+<h1> Calculate the average growth rate for a number of plants greater than or equal to 2  </h1>
+</br>
+<input type="submit" value="Search">
+</form>

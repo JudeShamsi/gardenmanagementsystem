@@ -1,6 +1,6 @@
 <?php
 
-include 'connecthg.php';
+include 'connect.php';
 $conn = OpenCon();
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -57,7 +57,7 @@ if ($conn->connect_error) {
 		<button class="headertab" onclick="openTab('Suppliers', this, 'yellow')">Suppliers</button>
 		<button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
 <?php
-    $sql = mysqli_query($conn, "SELECT * FROM Inventory");
+    $sql = mysqli_query($conn, "SELECT * FROM Employee");
     
 ?>
 <div class="container">
@@ -67,11 +67,11 @@ if ($conn->connect_error) {
 
         // check if the record exists in the table before deleting 
 
-        $check = mysqli_query($conn, "SELECT * FROM Inventory WHERE Inventory_ID = '$key' ");
+        $check = mysqli_query($conn, "SELECT * FROM Employee WHERE E_SIN = '$key' ");
        // $checkresult = $conn->query($check);
         if(mysqli_num_rows($check) > 0){
             
-        $queryDelete = mysqli_query($conn, "DELETE FROM Inventory WHERE Inventory_ID = '$key' ");
+        $queryDelete = mysqli_query($conn, "DELETE FROM Employee WHERE E_SIN = '$key' ");
         ?>
         
         <div class="alert alert-warning">
@@ -90,24 +90,26 @@ if ($conn->connect_error) {
     ?>
     <table class="table">
         <tr>
-            <th>Inventory Id</th>
-            <th>Inventory Category</th>
-            <th>Inventory Name</th>
-            <th>Stock Date</th>
-            <th>Expiration Date</th>
+            <th>Sin</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Employee Type</th>
         </tr>
         <?php
         $sr = 1;
         while($row = mysqli_fetch_array($sql)) {?>
         <tr>
             <form action="" method="post" role = "form">
-                <td><?php echo $sr;?></td>
-                <td><?php echo $row['Inventory_Category'];?></td>
-                <td><?php echo $row['InventoryName'];?></td>
-                <td><?php echo $row['Stock_Date'];?></td>
-                <td><?php echo $row['ExpirationDate'];?></td>
+                <td><?php echo $row['E_SIN'];?></td>
+                <td><?php echo $row['E_fname'];?></td>
+                <td><?php echo $row['E_lname'];?></td>
+                <td><?php echo $row['E_address'];?></td>
+                <td><?php echo $row['E_phone'];?></td>
+                <td><?php echo $row['E_Type'];?></td>
                 <td>
-                    <input type="checkbox" name="keyToDelete" value="<?php echo $row['Inventory_ID'];?>" required>
+                    <input type="checkbox" name="keyToDelete" value="<?php echo $row['E_SIN'];?>" required>
                  </td>
                  <td>
                     <input type="submit" name="submitDeleteBtn" class="btn btn-info">
@@ -126,9 +128,7 @@ if ($conn->connect_error) {
             <input type="submit" value="Add Supplier">
         </div>
     </form>
-</div> 
+</div>   
 
 </body>
 </html>
-
- 

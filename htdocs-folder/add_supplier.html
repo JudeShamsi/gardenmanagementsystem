@@ -18,22 +18,40 @@
 		</div>
 		<div id = "Schedule" class="tabcontent">
 			<h1>Schedule</h1>
-		</div>	
-		<button class="headertab" onclick="openTab('Homepage', this, 'red')" id="defaultOpen">Homepage</button>
+        </div>
+        
+        <form action="homepage.html" method="post">
+            <div class="pages-btn">
+                <button class="headertab" onclick="openTab('Homepage', this, 'red')" id="defaultOpen">Homepage</button>
+            </div>
+        </form>
         
         <form action="add_inventory.php" method="post">
             <div class="pages-btn">
                 <button class="headertab" onclick="openTab('Inventory', this, 'yellow')">Inventory</button>
             </div>
         </form>
+        <form action="add_schedule.php" method="post">
+            <div class="pages-btn">
+                <button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
+            </div>
+        </form>
         
-		<button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
         <h1 style="color: white"></h1>
         <br>
 
          <h3>Add a Supplier</h3> 
         <div class="container">
         <form action="add_supplier.php" method="post">
+            <div class="row">
+                <div class="col-25">
+                    <label>Supplier ID</label>
+                </div>
+                <div class="col-75">
+                    <input id="fname" name="s-id" type="text" placeholder="Type
+                    Here">
+                </div>
+            </div>
             <div class="row">
                 <div class="col-25">
                     <label>First Name</label>
@@ -83,7 +101,24 @@
                     <input type="submit" value="Search Suppliers">
                 </div>
             </form>
-        </div>    
+        </div>  
+        
+        <div >
+            <h3>Find Suppliers Inventory</h3>
+            <form action="join_tables.php" method="post">
+                <div class="row">
+                    <div class="col-25">
+                        <label>Find Suppliers Who Supply</label>
+                    </div>
+                    <div class="col-75">
+                        <input id="email" name="s-category" type="text" placeholder="Enter Inventory Category">
+                    </div>
+                </div>
+                <div class="pages-btn">
+                    <input type="submit" value="Search Suppliers">
+                </div>
+            </form>
+        </div>  
 
     </body>
 </html>

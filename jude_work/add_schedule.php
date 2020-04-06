@@ -2,7 +2,7 @@
 <html>
     <head>
         <?php
-        include 'connecthg.php';
+        include 'connect.php';
         $conn = OpenCon();
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -10,7 +10,6 @@
 
         $employeeSet = $conn->query("SELECT E_fname, E_SIN FROM Employee");
         $supplierSet = $conn->query("SELECT s_fname, Supplier_ID FROM Supplier");
-        
 
         ?>
     	<meta charset="UTF-8">
@@ -29,28 +28,21 @@
 			<h1>Inventory</h1>
 		</div>
 		<div id = "Schedule" class="tabcontent">
-			<h1>Suppliers</h1>
-        </div>	
-        <form action="homepage.html" method="post">
+			<h1>Schedule</h1>
+		</div>	
+        <button class="headertab" onclick="openTab('Homepage', this, 'green')">HomePage</button>
+        <form action="search_inventory.php" method="post">
                 <div class="pages-btn">
-                <button class="headertab" onclick="openTab('Homepage', this, 'green')">HomePage</button>
+                <button class="headertab" onclick="openTab('Suppliers', this, 'yellow')">Suppliers</button>
                 </div>
-        </form>
-        <form action="add_inventory.php" method="post">
-                <div class="pages-btn">
-                <button class="headertab" onclick="openTab('Inventory', this, 'yellow')">Inventory</button>
-                </div>
-        </form>
-        <form action="add_supplier.html" method="post">
-                <div class="pages-btn">
-                <button class="headertab" onclick="openTab('Suppliers', this, 'green')">Suppliers</button>
-                </div>
-        </form>        
+            </form>
+        <button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
+        
         <h1 style="color: white"></h1>
         <br>
         
 
-         <h3>Add a Task to the Schedule</h3> 
+         <h3>Add a Task</h3> 
         <div class="container">
         <form action="insert_schedule.php" method="post">
         
@@ -140,33 +132,20 @@
         </form>
         </div>
         
-        
-        
-        <form action="view_schedule.php" method="post">
-        <div class="row">
-                <div class="col-25">
-                    <label>View Schedule By Employee Type</label>
+        <div >
+            <h3>View Inventory Table</h3>
+            <form action="search_inventory.php" method="post">
+                <div class="pages-btn">
+                    <input type="submit" value="Search Inventory">
                 </div>
-                <div class="col-75">
-                <select name="employee-type">
-                        <option value='Gardener'>Gardener</option>;
-                        <option value='Facility'>Facility</option>;
-                        <option value='Operations'>Operations</option>;                      
-                </select>
-                </div>
-        </div>
-            <div class="pages-btn">
-                <input type="submit" value="Search Schedule">
-            </div>
-                </form> 
-        </div>
-        
+            </form>
+        </div> 
 
         <div >
-            <h3>Add an Employee</h3>
-            <form action="add_employee.php" method="post">
+            <h3>View Suppliers Table</h3>
+            <form action="search_supplier.php" method="post">
                 <div class="pages-btn">
-                    <input type="submit" value="Add Employee">
+                    <input type="submit" value="Search Suppliers">
                 </div>
             </form>
         </div>    

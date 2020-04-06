@@ -6,6 +6,8 @@
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: wheat;
+  background-image: url('img.jpg');
+
 }
 
 .intro {
@@ -84,7 +86,7 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    float: right;
+    float: center;
   }
   
   input[type=submit]:hover {

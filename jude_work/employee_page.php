@@ -18,32 +18,22 @@
 		</div>
 		<div id = "Schedule" class="tabcontent">
 			<h1>Schedule</h1>
-        </div>	
-        <form action="homepage.html" method="post">
-            <div class="pages-btn">
-            <button class="headertab" onclick="openTab('Homepage', this, 'red')" id="defaultOpen">Homepage</button>
-            </div>
-        </form>
+		</div>	
+		<button class="headertab" onclick="openTab('Homepage', this, 'red')" id="defaultOpen">Homepage</button>
         
         <form action="add_inventory.php" method="post">
             <div class="pages-btn">
                 <button class="headertab" onclick="openTab('Inventory', this, 'yellow')">Inventory</button>
             </div>
         </form>
-
-        <form action="add_schedule.php" method="post">
-            <div class="pages-btn">
-            <button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
-            </div>
-        </form>
         
-        
+		<button class="headertab" onclick="openTab('Schedule', this, 'green')">Schedule</button>
         <h1 style="color: white"></h1>
         <br>
 
          <h3>Add an Employee</h3> 
         <div class="container">
-        <form action="insert_employee.php" method="post">
+        <form action="add_employee.php" method="post">
             <div class="row">
                 <div class="col-25">
                     <label>First Name</label>

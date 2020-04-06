@@ -30,8 +30,7 @@ echo "</table>";
 }
 include 'connecthg.php';
 $cust_cols = $_POST['cust_cols'];
-$where_cols = $_POST['where_cols'];
 $conn = OpenCon();
-$sql = "select $cust_cols from PlantHas where P_CommonName like '%$where_cols%'";
+$sql = "select $cust_cols from PlantHas";
 myTable($conn,$sql);
 ?>

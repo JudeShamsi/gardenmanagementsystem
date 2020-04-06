@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Delete Records</title>
+        <title>Find Schedule</title>
         <link rel="stylesheet" href="./style_add_supplier.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -70,96 +70,49 @@ if ($conn->connect_error) {
                 </div>
         </form>
 <?php
-    $sql = mysqli_query($conn, "SELECT * FROM Supplier");
+    $E_Type = $_POST['employee-type'];
+    $sql = mysqli_query($conn, "SELECT * FROM Schedule AS s, Has AS h, Task AS t, Employee AS e WHERE h.TaskNum = t.TaskNum 
+    AND s.Schedule_Num = h.Schedule_NUM AND e.E_Type = '$E_Type'");
     
 ?>
 <div class="container">
-    <?php
-    if(isset($_POST['submitDeleteBtn'])) {
-        $key = $_POST['keyToDelete'];
-
-        // check if the record exists in the table before deleting 
-
-        $check = mysqli_query($conn, "SELECT * FROM Supplier WHERE Supplier_ID = '$key' ");
-       // $checkresult = $conn->query($check);
-        if(mysqli_num_rows($check) > 0){
-            
-        $queryDelete = mysqli_query($conn, "DELETE FROM Supplier WHERE Supplier_ID = '$key' ");
-        ?>
-        
-        <div class="alert alert-warning">
-            <p>Record deleted</p>
-        </div>
-
-    <?php    } else {
-            ?>
-
-            <div class="alert alert-warning">
-                <p>Record does not exist</p>
-            </div>
-
-            <?php }
-    }
-    ?>
+    
     <table class="table">
         <tr>
-            <th>Supplier_ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
+            <th>Scheduled Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Task</th>
+            <th>Task Notes</th>
         </tr>
         <?php
         $sr = 1;
         while($row = mysqli_fetch_array($sql)) {?>
         <tr>
             <form action="" method="post" role = "form">
-                <td><?php echo $row['Supplier_ID'];?></td>
-                <td><?php echo $row['s_fname'];?></td>
-                <td><?php echo $row['s_lname'];?></td>
-                <td><?php echo $row['s_email'];?></td>
-                <td><?php echo $row['s_phone'];?></td>
-                <td>
-                    <input type="checkbox" name="keyToDelete" value="<?php echo $row['Supplier_ID'];?>" required>
-                 </td>
-                 <td>
-                    <input type="submit" name="submitDeleteBtn" class="btn btn-info">
-                 </td>
+                <td><?php echo $row['Scheduled_Date'];?></td>
+                <td><?php echo $row['Start_Time'];?></td>
+                <td><?php echo $row['End_Time'];?></td>
+                <td><?php echo $row['Task_Name'];?></td>
+                <td><?php echo $row['T_notes'];?></td>
             </form>
         </tr>
-        <?php  $sr++;}
+        <?php  }
         
         ?>
     </table>
 </div>
 
 <div>
-    <form action="add_supplier.html" method="post">
+    <form action="find_employee_schedule.html" method="post">
         <div class="rows" id="pages-btn">
-            <input type="submit" value="Add Another Supplier">
+            <input type="submit" value="Go Back">
         </div>
     </form>
 </div>  
-
-
-
-<div>
-    <p>Search Inventory By Supplier</p>
-    <form action="division_supplier.php" method="post">
-        <div class="row">
-                <div class="col-25">
-                    <label>Find Suppliers Who've Supplied All Inventory Items of Type:</label>
-                </div>
-                <div class="col-75">
-                    <input id="i-category" name="i-category" type="text" placeholder="Choose Inventory Category">
-                </div>
-            </div>
-        <div class="rows" id="pages-btn">
-            <input type="submit" value="Find Supplier(s)">
-        </div>
     </form>
 
-</div>
+
 
 
 </body>
